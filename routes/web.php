@@ -20,6 +20,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::controller(TrainerController::class)->group(function () {
+    Route::get('/trainers', 'index');
+    Route::get('/trainer/{id}', 'show');
+    Route::post('/trainer', 'store');
+    Route::post('/trainer/{id}', 'update');
+});
+
 Route::controller(PokemonController::class)->group(function() {
     Route::get('/pokemon/{id}', 'show');
     Route::post('/pokemon', 'store');
