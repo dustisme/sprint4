@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PokemonController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\HomepageController;
-use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,16 +15,19 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', [HomepageController::class, 'mainHomepage']);
-Route::get('/registration', [UserController::class, 'userRegistration']);
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::controller(PokemonController::class)->group(function() {
+    Route::get('/pokemon/{id}', 'show');
+    Route::post('/pokemon', 'store');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
