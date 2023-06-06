@@ -17,110 +17,110 @@ class Pokemon extends Model
         'fire' => [
             'fire' => 0.5,
             'water' => 0.5,
-            'grass' => 200,
-            'ice' => 200,
-            'bug' => 200,
+            'grass' => 2.0,
+            'ice' => 2.0,
+            'bug' => 2.0,
             'rock' => 0.5,
             'dragon' => 0.5
         ],
         'water' => [
-            'fire' => 200,
+            'fire' => 2.0,
             'water' => 0.5,
             'grass' => 0.5,
-            'ground' => 200,
-            'rock' => 200,
+            'ground' => 2.0,
+            'rock' => 2.0,
             'dragon' => 0.5
         ],
         'electric' => [
-            'water' => 200,
+            'water' => 2.0,
             'electric' => 0.5,
             'grass' => 0.5,
             'ground' => 0.0,
-            'flying' => 200,
+            'flying' => 2.0,
             'dragon' => 0.5
         ],
         'grass' => [
             'fire' => 0.5,
-            'water' => 200,
+            'water' => 2.0,
             'grass' => 0.5,
             'poison' => 0.5,
-            'ground' => 200,
+            'ground' => 2.0,
             'flying' => 0.5,
             'bug' => 0.5,
-            'rock' => 200,
+            'rock' => 2.0,
             'dragon' => 0.5
         ],
         'ice' => [
             'water' => 0.5,
-            'grass' => 200,
+            'grass' => 2.0,
             'ice' => 0.5,
-            'ground' => 200,
-            'flying' => 200,
-            'dragon' => 200
+            'ground' => 2.0,
+            'flying' => 2.0,
+            'dragon' => 2.0
         ],
         'fighting' => [
-            'normal' => 200,
-            'ice' => 200,
+            'normal' => 2.0,
+            'ice' => 2.0,
             'poison' => 0.5,
             'flying' => 0.5,
             'psychic' => 0.5,
             'bug' => 0.5,
-            'rock' => 200,
+            'rock' => 2.0,
             'ghost' => 0.0
         ],
         'poison' => [
-            'grass' => 200,
+            'grass' => 2.0,
             'poison' => 0.5,
             'ground' => 0.5,
-            'bug' => 200,
+            'bug' => 2.0,
             'rock' => 0.5,
             'ghost' => 0.5
         ],
         'ground' => [
-            'fire' => 200,
-            'electric' => 200,
+            'fire' => 2.0,
+            'electric' => 2.0,
             'grass' => 0.5,
-            'poison' => 200,
+            'poison' => 2.0,
             'flying' => 0.0,
             'bug' => 0.5,
-            'rock' => 200
+            'rock' => 2.0
         ],
         'flying' => [
             'electric' => 0.5,
-            'grass' => 200,
-            'fighting' => 200,
-            'bug' => 200,
+            'grass' => 2.0,
+            'fighting' => 2.0,
+            'bug' => 2.0,
             'rock' => 0.5
         ],
         'psychic' => [
-            'fighting' => 200,
-            'poison' => 200,
+            'fighting' => 2.0,
+            'poison' => 2.0,
             'psychic' => 0.5
         ],
         'bug' => [
             'fire' => 0.5,
-            'grass' => 200,
+            'grass' => 2.0,
             'fighting' => 0.5,
-            'poison' => 200,
+            'poison' => 2.0,
             'flying' => 0.5,
-            'psychic' => 200,
+            'psychic' => 2.0,
             'ghost' => 0.5
         ],
         'rock' => [
-            'fire' => 200,
-            'ice' => 200,
+            'fire' => 2.0,
+            'ice' => 2.0,
             'fighting' => 0.5,
             'ground' => 0.5,
-            'flying' => 200,
-            'bug' => 200
+            'flying' => 2.0,
+            'bug' => 2.0
         ],
         'ghost' => [
             'normal' => 0.0,
             'psychic' => 0.0,
-            'ghost' => 200
+            'ghost' => 2.0
         ],
         'dragon' => [
-            'dragon' => 200,
+            'dragon' => 2.0,
         ]
     ];
 
