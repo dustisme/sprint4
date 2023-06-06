@@ -15,7 +15,6 @@ return new class extends Migration
         Schema::create('pokemon', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('code');
             $table->integer('level');
             $table->foreignIdFor(PokemonType::class)->unique();
             $table->timestamps();
