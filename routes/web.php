@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PokemonController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TrainerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,16 +16,12 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::controller(TrainerController::class)->group(function () {
     Route::get('/trainers', 'index');
-    Route::get('/trainer/{id}', 'show');
-    Route::post('/trainer', 'store');
-    Route::post('/trainer/{id}', 'update');
+    Route::get('/trainers/{trainer}', 'show');
+    Route::get('/trainer-registration', 'create');
+    Route::post('/trainers', 'store');
+    Route::post('/trainers/{trainer}', 'update');
 });
 
 Route::controller(PokemonController::class)->group(function() {
@@ -32,9 +29,9 @@ Route::controller(PokemonController::class)->group(function() {
     Route::post('/pokemon', 'store');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
