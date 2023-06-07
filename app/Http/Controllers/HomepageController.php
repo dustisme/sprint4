@@ -6,11 +6,7 @@ use Illuminate\Http\Request;
 
 class HomepageController extends Controller
 {
-    public function mainHomepage() {
+    public function __invoke() {
         return view('homepage');
-    }
-
-    public function trainerHomepage() {
-        return view('trainerHomepage');
     }
 }
