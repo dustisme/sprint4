@@ -1,32 +1,25 @@
 @extends('layouts.base')
-{{ $title = 'Pokémon League' }}
 
 @section('content')
-<x-section>
-    <table>
-        <thead>
-            <tr>
-                <th scope="col">NAME</th>
-                <th scope="col">POKÉMON</th>
-                <th scope="col">ACTIONS</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($trainers as $trainer)
-                <tr>
-                    <td>{{ $trainer->name }}</td>
-                    <td>{{ $trainer->pokemon->name }}</td>
-            @endforeach
 
-            <tr>
-                <td><a href="">SHOW DETAILS</a></td>
-                <td>
-                    <x-form-button method="POST" action="DELETE">
-                        DELETE
-                    </x-form-button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</x-section>
+    </x-table.table :headers="['NAME', 'CODE', 'POKÉMON', 'ACTIONS']">
+
+        @foraech($trainers as $trainer)
+        <tr>
+            <x-table.td>{{ $trainer->name }}</x-table.td>
+            <x-table.td>{{ $trainer->code }}</x-table.td>
+            <x-table.td>{{ $trainer->pokemon_id }}</x-table.td>
+            <x-table.td>
+                <a href="/trainer/{{ $trainer->id }}">
+                    <x-button 
+                    class="bg-slate-100 p-2 rounded">SHOW DETAILS</x-button>
+                </a>
+                <x-form-button class="bg-slate-100 p-2 rounded">
+                    DELETE
+                </x-form-button>
+            </x-table.td>
+
+        </tr>
+
+    </x-section>
 @endsection
