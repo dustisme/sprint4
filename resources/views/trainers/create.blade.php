@@ -62,14 +62,13 @@
                 </div>
                 <br>
                 <div class="flex justify-evenly">
-                    <x-form-button class="bg-slate-50 p-2 rounded">
+                    <x-form-button action="/trainers" class="bg-slate-100 p-2 rounded">
                         SUBMIT
                     </x-form-button>
-                    <x-form-button type="reset" class="bg-slate-50 p-2 rounded">
+                    <x-form-button type="reset" class="bg-red-400 p-2 rounded">
                         CANCEL
                     </x-form-button>
                 </div>
-
 
             </x-section>
 
