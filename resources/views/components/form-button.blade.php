@@ -1,9 +1,13 @@
 @props([
-    'type' => 'submit'
+    'method' => 'POST',
 ])
-<div>
-    <button type="{{$type === 'submit' ? 'submit' : 'reset'}}" {{ $attributes }}>
-        @csrf 
-        {{ $slot }}
-    </button>
-</div>
+<x-form method="{{ $method }}" action="{{ $action }}">
+    <div>
+        <x-button {{ $attributes }}>
+            @csrf
+
+            {{ $slot }}
+            
+        </x-button>
+    </div>
+</x-form>
