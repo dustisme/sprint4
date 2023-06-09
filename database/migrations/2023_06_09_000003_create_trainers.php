@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('trainers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('code');
-            $table->unsignedBigInteger('pokemon_id')->nullable();
-            $table->timestamps();
+            $table->string('trainer_name');
+            $table->string('trainer_code');
+            $table->unsignedBigInteger('pokemon_id');
             $table->foreign('pokemon_id')->references('id')->on('pokemons');
         });
     }
