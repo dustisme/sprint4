@@ -1,13 +1,9 @@
-@props([
-    'method' => 'POST',
-])
 <x-form method="{{ $method }}" action="{{ $action }}">
     <div>
-        <x-button {{ $attributes }}>
-            @csrf
+        <button {{ $attributes }}>
 
             {{ $slot }}
-            
-        </x-button>
+
+        <button>
     </div>
 </x-form>

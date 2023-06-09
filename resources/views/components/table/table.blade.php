@@ -1,14 +1,21 @@
 <x-section>
-    <table>
+    <table {{ $attributes->merge([
+        'class' => 'w-full table-auto text-right',
+    ]) }}>
         <thead>
             <tr>
-                @foraech($headers as $header)
-                <th>{{ $header }}</th>
+                @foreach ($headers as $header)
+                    <th {{ $attributes->merge([
+                        'class' => 'px-4 py-2 ',
+                    ]) }}>
+                        {{ $header }}</th>
+                @endforeach
             </tr>
         </thead>
-        <tbody>
+        <tbody {{ $attributes }}>
 
             {{ $slot }}
 
         </tbody>
     </table>
+</x-section>

@@ -10,10 +10,14 @@
                 <h2 class="text-2xl">What would you like to do?</h2>
             </div>
             <div class="text-white text-center font-PokemonGB flex flex-col px-2 py-8">
+                {{-- Create new Trainer --}}
                 <a href="/trainer-registration" class="pb-2">&#9205; Register a Pokémon Trainer</a>
+                {{-- List Trainers --}}
                 <a href="/trainers" class="pb-2">&#9205; Look which Pokémon Trainers participate</a>
+                {{-- Create new Battle --}}
                 <a href="/new-battle" class="pb-2">&#9205; Register a new Pokémon Battle</a>
-                <a href="/battle-results" class="pb-2">&#9205; Look Pokémon Battles results</a>
+                {{-- List Battles --}}
+                <a href="/battle-results" class="pb-2">&#9205; View Pokémon Battles results</a>
             </div>
 
             </div>

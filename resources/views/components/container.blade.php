@@ -1,4 +1,6 @@
-<div class="container mx-auto my-auto p-10 flex justify-center grid-cols-3 rounded">
+<div {{ $attributes->merge([
+    'class' => 'container mx-auto my-auto py-12 flex justify-center rounded',
+]) }} >
 
     {{ $slot }}
 

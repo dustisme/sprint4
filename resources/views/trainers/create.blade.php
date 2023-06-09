@@ -3,46 +3,64 @@
 @section('content')
     <x-container>
 
-        <x-form action="/trainers" class="p-4 rounded">
+        <x-form action="/trainers" class="p-4">
 
-            <x-section name="banner">
+            <x-section>
                 <h2 class="text-white font-bold">REGISTER POKÉMON TRAINER</h2>
+                <p class="text-red-400 text-xs">&#10033; required</p>
             </x-section>
             <x-section>
 
-                <div name="item" class="">
+                <div>
                     <label for="name" class="text-white font-bold">TRAINER'S NAME <span
-                            class="text-red-400">*</span></label><br>
-                    <input id="name" name="name" type="text" class="rounded" required><br>
+                            class="text-red-400 text-xs">&#10033;</span></label><br>
+                    <input id="name" name="name" type="text" class="rounded"><br>
+                    @error('name')
+                        <small class="text-red-500">*{{ $message }}</small>
+                        <br>
+                    @enderror
                 </div>
                 <br>
 
-                <div name="item" class="">
+                <div>
                     <label for="code" class="text-white font-bold">TRAINER'S CODE <span
-                            class="text-red-400">*</span></label><br>
-                    <input id="code" name="code" type="text" class="rounded" required><br>
+                            class="text-red-400 text-xs">&#10033;</span></label><br>
+                    <input id="code" name="code" type="text" class="rounded"><br>
+                    @error('code')
+                        <small class="text-red-500">*{{ $message }}</small>
+                        <br>
+                    @enderror
                 </div>
                 <br>
 
-                <div name="item" class="">
+                <div>
                     <label for="pokemonName" class="text-white font-bold">POKÉMON NAME <span
-                            class="text-red-400">*</span></label><br>
-                    <input id="pokemonName" name="pokemonName" type="text" class="rounded" required><br>
+                            class="text-red-400 text-xs">&#10033;</span></label><br>
+                    <input id="pokemonName" name="pokemonName" type="text" class="rounded"><br>
+                    @error('pokemon_name')
+                        <small class="text-red-500">*{{ $message }}</small>
+                        <br>
+                    @enderror
                 </div>
                 <br>
 
-                <div name="item" class="">
+                <div>
                     <label for="pokemonLevel" class="text-white font-bold"> POKÉMON LEVEL<span
-                            class="text-red-400">*</span></label><br>
+                            class="text-red-400 text-xs">&#10033;</span></label><br>
                     <input id="pokemonLevel" name="pokemonLevel" type="number" class="rounded" min="1"
-                        max="100" required><br>
+                        max="100"><br>
+                    @error('pokemon_level')
+                        <small class="text-red-500">*{{ $message }}</small>
+                        <br>
+                    @enderror
                 </div>
                 <br>
 
-                <div name="item" class="">
-                    <label for="pokemonType" class="text-white font-bold">POKÉMON TYPE <span class="text-red-400">* Select
+                <div>
+                    <label for="pokemonType" class="text-white font-bold">POKÉMON TYPE <span
+                            class="text-red-400 text-xs">&#10033; Select
                             One</span></label><br>
-                    <select name="pokemonType" id="pokemonType" class="rounded" required><br>
+                    <select name="pokemonType" id="pokemonType" class="rounded"><br>
                         <option value="normal" id="1" class="uppercase">NORMAL</option>
                         <option value="fire" id="2" class="uppercase">FIRE</option>
                         <option value="water" id="3" class="uppercase">WATER</option>
@@ -59,15 +77,24 @@
                         <option value="ghost" id="14" class="uppercase">GHOST</option>
                         <option value="dragon" id="15" class="uppercase">DRAGON</option>
                     </select>
+                    @error('pokemon_type')
+                        <small class="text-red-500">*{{ $message }}</small>
+                        <br>
+                    @enderror
                 </div>
                 <br>
                 <div class="flex justify-evenly">
-                    <x-form-button action="/trainers" class="bg-slate-100 p-2 rounded">
+                    <x-button class="bg-slate-500 p-2 rounded">
                         SUBMIT
-                    </x-form-button>
-                    <x-form-button type="reset" class="bg-red-400 p-2 rounded">
-                        CANCEL
-                    </x-form-button>
+                    </x-button>
+                    <x-button type="reset" class="bg-slate-500 p-2 rounded">
+                        RESET
+                    </x-button>
+                    <x-form action="/trainers.index">
+                        <x-button class="bg-red-400 hover:bg-red-500 p-2 rounded">
+                            CANCEL
+                        </x-button>
+                    </x-form>
                 </div>
 
             </x-section>
