@@ -2,6 +2,7 @@
 
 use App\Models\Trainer;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FormController;
 use App\Http\Controllers\PokemonController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TrainerController;
@@ -20,24 +21,14 @@ use App\Http\Controllers\HomepageController;
 
 Route::get('/', HomepageController::class);
 
-Route::post('/submit-form', [FormController::class, 'submitForm'])->name('submitForm');
-
-Route::controller(TrainerController::class)->group(function () {
+Route::controller(FormController::class)->group(function() {
     Route::get('/trainers', 'index');
-    Route::get('/trainer-info/{id}', 'show');
     Route::get('/trainer-registration', 'create');
+    Route::post('/trainers', 'store');
+    Route::get('/trainer-info/{id}', 'show');
     Route::get('/edit-info/{id}', 'edit');
-    // Route::post('/trainers', 'store');
-    // Route::patch('/trainers/{id}', 'update');
-    // Route::delete('/trainers/{id}', 'destroy');
-});
-// Route::delete('/trainer-info/{id}', '');
-
-// Route::redirect('/trainer-registration', '/trainers');
-
-Route::controller(PokemonController::class)->group(function () {
-    Route::get('/pokemon/{id}', 'show');
-    Route::post('/pokemon', 'store');
+    Route::patch('/trainer/{id}', 'update');
+    Route::delete('/trainers/{id}', 'destroy');
 });
 
 // Route::get('/dashboard', function () {
