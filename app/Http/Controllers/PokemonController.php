@@ -41,16 +41,20 @@ class PokemonController extends Controller
         //get the form data
         $pokemon->name = $request->pokemonName;
         $pokemon->level = $request->pokemonLevel;
-        $pokemon->type = $request->ype;
+        $pokemon->type = $request->type;
+
+        // $pokemon->save();
 
         //insert the data into the trainers' table and get the trainer's id
         $trainerId = $this->trainerController->store($request);
 
         //insert the data into the pokemon table
-        $pokemonId = DB::table('pokemon')->insertGetId([
+        $pokemonId = DB::table('pokemons')->insertGetId([
             'name' => $pokemon->name,
             'level' => $pokemon->level,
-            'type_id' => DB::table('type')->where('name', $pokemon->type)->value('id'),
+            'type_id' => DB::table('pokemontype')
+                ->where('name', $pokemon->type_name)
+                ->value('id'),
         ]);
 
         //update the trainer's pokemon_id with the id of the trainer's pokemon

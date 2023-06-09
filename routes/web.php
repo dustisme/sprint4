@@ -17,8 +17,10 @@ use App\Http\Controllers\HomepageController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::get('/', HomepageController::class);
 
+Route::post('/submit-form', [FormController::class, 'submitForm'])->name('submitForm');
 
 Route::controller(TrainerController::class)->group(function () {
     Route::get('/trainers', 'index');
@@ -33,7 +35,7 @@ Route::controller(TrainerController::class)->group(function () {
 
 // Route::redirect('/trainer-registration', '/trainers');
 
-Route::controller(PokemonController::class)->group(function() {
+Route::controller(PokemonController::class)->group(function () {
     Route::get('/pokemon/{id}', 'show');
     Route::post('/pokemon', 'store');
 });
@@ -49,5 +51,3 @@ Route::controller(PokemonController::class)->group(function() {
 // });
 
 // require __DIR__.'/auth.php';
-
-

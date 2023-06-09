@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Trainer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\RedirectResponse;
 
 class TrainerController extends Controller
 {
@@ -13,13 +14,16 @@ class TrainerController extends Controller
      */
     public function index()
     {
-        $trainers = DB::table('trainers')
-        ->leftjoin('pokemon', 'pokemon.id', "=", 'trainers.pokemon_id')
-        ->select('trainers.name', 'pokemon.name')
-        ->get();
-        return view('trainers.trainerHomepage', ['trainers' => $trainers]);
-        // $trainers = Trainer::all();
-        // return view('trainers.trainerHomepage')->with('trainers', $trainers);
+        // $trainers = DB::table('trainers')
+        // ->leftjoin('pokemon', 'pokemon.id', "=", 'trainers.pokemon_id')
+        // ->select('trainers.name', 'pokemon.name')
+        // ->get();
+
+        // return view('trainers.index', ['trainers' => $trainers]);
+
+
+        $trainers = Trainer::all();
+        return view('trainers.index')->with('trainers', $trainers);
     }
 
     /**
@@ -47,7 +51,6 @@ class TrainerController extends Controller
             'code' => $trainer->code,
         ]);
 
-        return $trainer->id;
 
     }
 
@@ -72,7 +75,7 @@ class TrainerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, int $id): RedirectResponse
     {
         $trainer = Trainer::find($id);
         
@@ -80,6 +83,7 @@ class TrainerController extends Controller
         $trainer->pokemon_id = $request->get('pokemon_id');
 
         $trainer->save();
+
         return redirect('/trainer/{id}');
 
     }
@@ -87,10 +91,11 @@ class TrainerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(int $id): RedirectResponse
     {
         $trainer = Trainer::find($id);
-        $trainer->delete($id);
-        return redirect('/trainers.trainerHomepage');
+        $trainer->delete();
+
+        return redirect('/trainers.index');
     }
 }

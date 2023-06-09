@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pokemon extends Model
 {
     use HasFactory;
-
+    protected $fillable = ['name', 'level', 'type_id'];
     private $effectiveness = [
         'normal' => [
             'rock' => 0.5,
@@ -124,6 +124,17 @@ class Pokemon extends Model
         ]
     ];
 
+    public function trainer() {
+
+        return $this->hasOne(Trainer::class, 'pokemon_id');
+    }
+
+    public function type() {
+
+        return $this->belongsTo(PokemonType::class);
+
+    }
+
     function pokemonTypeAttack($rival_type) {
         if (isset($this->effectiveness[$this->type][$rival_type])) {
             return $this->effectiveness[$this->type][$rival_type];
@@ -131,4 +142,6 @@ class Pokemon extends Model
             return 1.0;
         }
     }
+
+
 }
