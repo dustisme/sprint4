@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Trainer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TrainerController extends Controller
 {
@@ -12,7 +13,13 @@ class TrainerController extends Controller
      */
     public function index()
     {
-        return view('trainers.index');
+        $trainers = DB::table('trainers')
+        ->leftjoin('pokemon', 'pokemon.id', "=", 'trainers.pokemon_id')
+        ->select('trainers.name', 'pokemon.name')
+        ->get();
+        return view('trainers.trainerHomepage', ['trainers' => $trainers]);
+        // $trainers = Trainer::all();
+        // return view('trainers.trainerHomepage')->with('trainers', $trainers);
     }
 
     /**
@@ -30,28 +37,33 @@ class TrainerController extends Controller
     {
         $trainer = new Trainer;
 
+        //get the form data
         $trainer->name = $request->name;
         $trainer->code = $request->code;
-        $trainer->pokemon_id = $request->pokemon_id;
+        
+        //inserts the data into the trainers table
+        $trainer->id = DB::table('trainers')->insertGetId([
+            'name' => $trainer->name,
+            'code' => $trainer->code,
+        ]);
 
-        $trainer->save();
-
-        return redirect('/trainers');
+        return $trainer->id;
 
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Trainer $trainer)
-    {
-        return view('trainer/{id}');
+    public function show(string $id)
+    {   
+        $trainer = Trainer::find($id);
+        return view('trainers.show')->with('trainer', $trainer);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(int $id)
+    public function edit(string $id)
     {
         $trainer = Trainer::find($id);
         return view('trainers.edit')->with('trainer', $trainer);
@@ -75,8 +87,10 @@ class TrainerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Trainer $trainer)
+    public function destroy(string $id)
     {
-        //
+        $trainer = Trainer::find($id);
+        $trainer->delete($id);
+        return redirect('/trainers.trainerHomepage');
     }
 }

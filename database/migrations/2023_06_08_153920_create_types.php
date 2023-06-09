@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pokemon_type', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+        Schema::create('pokemontype', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('type_name');
         });
     }
 
@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('pokemontype');
     }
 };

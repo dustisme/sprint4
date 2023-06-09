@@ -1,9 +1,8 @@
 <?php
 
-use App\Models\Pokemon;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -13,10 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('trainers', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('name');
-            $table->foreignIdFor(Pokemon::class)->unique();
+            $table->string('code');
+            $table->unsignedBigInteger('pokemon_id')->nullable();
             $table->timestamps();
+            $table->foreign('pokemon_id')->references('id')->on('pokemons');
         });
     }
 

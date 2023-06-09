@@ -1,8 +1,11 @@
 <?php
 
+use App\Models\Trainer;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PokemonController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TrainerController;
+use App\Http\Controllers\HomepageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,34 +17,37 @@ use App\Http\Controllers\ProfileController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', HomepageController::class);
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::controller(TrainerController::class)->group(function () {
     Route::get('/trainers', 'index');
-    Route::get('/trainer/{id}', 'show');
-    Route::post('/trainer', 'store');
-    Route::post('/trainer/{id}', 'update');
+    Route::get('/trainer-info/{id}', 'show');
+    Route::get('/trainer-registration', 'create');
+    Route::get('/edit-info/{id}', 'edit');
+    // Route::post('/trainers', 'store');
+    // Route::patch('/trainers/{id}', 'update');
+    // Route::delete('/trainers/{id}', 'destroy');
 });
+// Route::delete('/trainer-info/{id}', '');
+
+// Route::redirect('/trainer-registration', '/trainers');
 
 Route::controller(PokemonController::class)->group(function() {
     Route::get('/pokemon/{id}', 'show');
     Route::post('/pokemon', 'store');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 
-require __DIR__.'/auth.php';
+// require __DIR__.'/auth.php';
 
 
