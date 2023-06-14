@@ -17,15 +17,10 @@
 </head>
 
 <body class="bg-slate-100">
-    <header>
-        
-    </header>
+
 
     @yield('content')
 
-    <footer>
-
-    </footer>
+  
 </body>
-
 </html>
