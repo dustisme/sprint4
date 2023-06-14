@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Battle;
 use App\Models\Trainer;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\CreateBattleRequest;
 
 class BattleFormController extends Controller
 {
@@ -14,13 +15,12 @@ class BattleFormController extends Controller
     public function index()
     {
 
-        $battle = Battle::all();
+        $battles = Battle::all();
 
         return view('battles.index', [
-            'battles' => $battle,
+            'battles' => $battles,
             'trainer1' => Trainer::get(),
             'trainer2' => Trainer::get(),
-            'winner_trainer_id' => Trainer::get(),
         ]);
     }
 
@@ -37,28 +37,22 @@ class BattleFormController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateBattleRequest $request): RedirectResponse
     {
-        //form data validation
-        $validatedData = $request->validate([
-            'trainer_1_id' => 'required|exists:trainers,id',
-            'trainer_2_id' => 'required|exists:trainers,id',
-        ]);
-
         //find Trainer by id
-        $trainer1 = Trainer::find($validatedData['trainer_1_id']);
-        $trainer2 = Trainer::find($validatedData['trainer_2_id']);
+        $trainer1 = Trainer::find($request->trainer_1_id);
+        $trainer2 = Trainer::find($request->trainer_2_id);
 
-        //creates battle with empty trainers columns
-        $battle = Battle::create([
-            'battle_date' => now()->format('Y-m-d'),
-        ]);
+        //creates new battle with trainers
+        $battle = new Battle();
+        $battle->trainer_1_id = $trainer1->id;
+        $battle->trainer_2_id = $trainer2->id;
 
         //assigns winner and loser through determineWinner function
         $winner = $battle->determineWinner($trainer1->id, $trainer1->pokemon->id, $trainer2->id, $trainer2->pokemon->id);
         $loser = ($winner === $trainer1->id) ? $trainer2->id : $trainer1->id;
 
-        //updates and saves the empty battle
+        //updates and saves battle
         $battle->winner_trainer_id = $winner;
         $battle->loser_trainer_id = $loser;
         $battle->save();
@@ -71,7 +65,7 @@ class BattleFormController extends Controller
      */
     public function show(int $id)
     {
-        $battle = Battle::with('trainer')->findOrFail($id);
+        $battle = Battle::with(['trainer1', 'trainer2'])->findOrFail($id);
 
         //retrieves winner and loser by id
         $winner = Trainer::find($battle->winner_trainer_id);
@@ -79,6 +73,8 @@ class BattleFormController extends Controller
 
         return view('battles.show', [
             'battle' => $battle,
+            'trainer1' => Trainer::find($battle->trainer_1_id),
+            'trainer2' => Trainer::find($battle->trainer_2_id),
             'winner' => $winner,
             'loser' => $loser,
         ]);
