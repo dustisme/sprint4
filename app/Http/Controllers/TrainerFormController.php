@@ -57,7 +57,12 @@ class TrainerFormController extends Controller
     {
         $trainer = Trainer::with('pokemon')->findOrFail($id);
 
-        return view('trainers.show', ['trainer' => $trainer]);
+        return view('trainers.show', 
+            [
+                'trainer' => $trainer,
+                // 'battlesWon' => $trainer->battlesWonCount(),
+                // 'battlesLost' => $trainer->battlesLostCount(),
+            ]);
     }
 
     public function edit(string $id)

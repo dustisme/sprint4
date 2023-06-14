@@ -20,8 +20,8 @@
 
             <div class="text-white px-10 py-5">
                 <h2>BATTLES</h2>
-                <h3>WON:</h3>
-                <h3>LOST:</h3>
+                <h3>WON: {{ $trainer->battlesWonCount() }}</h3>
+                <h3>LOST: {{ $trainer->battlesLostCount() }}</h3>
             </div>
         </x-section>
 
