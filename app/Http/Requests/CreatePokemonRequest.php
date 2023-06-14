@@ -29,6 +29,15 @@ class CreatePokemonRequest extends FormRequest
         ];
     }
 
+    public function messages() {
+
+        return [
+            'pokemon_name.require' => ':attribute is mandatory',
+            'pokemon_level.require' => ':attribute is mandatory',
+            'type_id' => ':attribute is mandatory',
+        ];
+    }
+
     public function attributes() {
 
         return [
