@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('trainer_1_id')->nullable();
             $table->unsignedBigInteger('trainer_2_id')->nullable();
             $table->unsignedBigInteger('winner_trainer_id')->nullable();
+            $table->unsignedBigInteger('loser_trainer_id')->nullable();
             $table->foreign('trainer_1_id')->references('id')->on('trainers');
             $table->foreign('trainer_2_id')->references('id')->on('trainers');
         });
