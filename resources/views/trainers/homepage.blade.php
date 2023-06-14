@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('content')
-<x-header />
+{{-- <x-header /> --}}
     <x-container>
 
         <x-section>
@@ -26,5 +26,5 @@
         </x-section>
 
     </x-container>
-<x-footer />
+{{-- <x-footer /> --}}
 @endsection

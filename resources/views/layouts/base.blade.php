@@ -18,9 +18,10 @@
 
 <body class="bg-slate-100">
 
+    <x-header />
 
     @yield('content')
 
-  
+    <x-footer />
 </body>
 </html>
