@@ -6,12 +6,13 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class CreateBattleRequest extends FormRequest
 {
+    protected $redirectRoute = 'battles.create';
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,9 @@ class CreateBattleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'battle_date' => now()->format('Y-m-d'),
+            'trainer_1_id' => 'required|exists:trainers,id',
+            'trainer_2_id' => 'required|exists:trainers,id',
         ];
     }
 }
