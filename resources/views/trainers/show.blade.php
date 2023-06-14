@@ -6,14 +6,16 @@
         <x-section class="flex p-5">
             <div class="text-white px-10 py-5">
                 <h1 class="pb-7">TRAINER'S DETAILS</h1>
-                <h2>NAME: {{ $trainer->name }}</h2>
-                <h2>CODE: {{ $trainer->code }}</h2>
+                <h2>NAME: {{ $trainer->trainer_name }}</h2>
+                <h2>CODE: {{ $trainer->trainer_code }}</h2>
             </div>
 
             <div class="text-white px-10 py-5">
-                <h2>POKÉMON:</h2>
-                <h3>LEVEL:</h3>
-                <h3>TYPE:</h3>
+                @if($trainer->pokemon)
+                <h2>POKÉMON: {{ $trainer->pokemon->pokemon_name}} </h2>
+                <h3>LEVEL: {{ $trainer->pokemon->pokemon_level }}</h3>
+                <h3>TYPE: {{ $trainer->pokemon->type->type_name }}</h3>
+                @endif
             </div>
 
             <div class="text-white px-10 py-5">
