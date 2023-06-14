@@ -37,3 +37,4 @@
         </div>
 
     </x-container>
+@endsection
