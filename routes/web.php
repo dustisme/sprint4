@@ -1,11 +1,8 @@
 <?php
 
-use App\Models\Trainer;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FormController;
-use App\Http\Controllers\PokemonController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TrainerController;
+use App\Http\Controllers\TrainerFormController;
+use App\Http\Controllers\BattleFormController;
 use App\Http\Controllers\HomepageController;
 
 /*
@@ -21,14 +18,21 @@ use App\Http\Controllers\HomepageController;
 
 Route::get('/', HomepageController::class);
 
-Route::controller(FormController::class)->group(function() {
+Route::controller(TrainerFormController::class)->group(function() {
     Route::get('/trainers', 'index');
-    Route::get('/trainer-registration', 'create');
-    Route::post('/trainers', 'store');
+    Route::get('/new-trainer', 'create');
+    Route::post('/trainer', 'store');
     Route::get('/trainer-info/{id}', 'show');
     Route::get('/edit-info/{id}', 'edit');
     Route::patch('/trainer/{id}', 'update');
     Route::delete('/trainers/{id}', 'destroy');
+});
+
+Route::controller(BattleFormController::class)->group(function () {
+    Route::get('/battle-results', 'index');
+    Route::get('/new-battle', 'create');
+    Route::post('/battle', 'store');
+    Route::get('/battle-info/{id}', 'show');
 });
 
 // Route::get('/dashboard', function () {
