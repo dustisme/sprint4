@@ -29,6 +29,14 @@ class CreateTrainerRequest extends FormRequest
         ];
     }
 
+    public function messages() {
+
+        return [
+            'trainer_name.require' => ':attribute is mandatory',
+            'trainer_code.require' => ':attribute is mandatory',
+        ];
+    }
+
     public function attributes() {
 
         return [
