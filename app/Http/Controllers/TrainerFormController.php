@@ -86,7 +86,7 @@ class TrainerFormController extends Controller
         //updates pokemon
         $pokemon->pokemon_name = $pokemonRequest->get('pokemon_name');
         $pokemon->pokemon_level = $pokemonRequest->get('pokemon_level');
-        $pokemon->type_id = $pokemon->id;
+        $pokemon->type_id = $pokemonRequest->get('type_id');
         $pokemon->save();
 
         return redirect("/trainer-info/$trainer->id");
