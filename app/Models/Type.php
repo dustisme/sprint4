@@ -8,10 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Type extends Model
 {
     use HasFactory;
-    protected $fillable = ['name'];
+
+    protected $table = 'types';
+    protected $fillable = ['type_name'];
+    public $timestamps = false;
 
     public function pokemon() {
         
         return $this->hasMany(Pokemon::class, 'type_id');
     }
+
+    
 }

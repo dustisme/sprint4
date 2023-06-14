@@ -11,7 +11,7 @@
             </div>
             <div class="text-white text-center font-PokemonGB flex flex-col px-2 py-8">
                 {{-- Create new Trainer --}}
-                <a href="/trainer-registration" class="pb-2">&#9205; Register a Pokémon Trainer</a>
+                <a href="/new-trainer" class="pb-2">&#9205; Register a Pokémon Trainer</a>
                 {{-- List Trainers --}}
                 <a href="/trainers" class="pb-2">&#9205; Look which Pokémon Trainers participate</a>
                 {{-- Create new Battle --}}

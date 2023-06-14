@@ -3,18 +3,22 @@
 @section('content')
     <x-container>
 
-        <x-form action="/trainers" class="p-4">
+        <x-form action="/trainer" method="POST" class="p-4">
 
             <x-section>
                 <h2 class="text-white font-bold">REGISTER POKÉMON TRAINER</h2>
                 <p class="text-red-400 text-xs">&#10033; required</p>
             </x-section>
             <x-section>
-                {{-- Trainer's input field --}}
+                {{-- Trainer input field --}}
                 <div>
                     <label for="trainer_name" class="text-white font-bold">TRAINER'S NAME <span
                             class="text-red-400 text-xs">&#10033;</span></label><br>
                     <input id="trainer_name" name="trainer_name" type="text" class="rounded"><br>
+                    @error('trainer_name')
+                        <small class="text-red-400">*{{ $message }}</small>
+                        <br>
+                    @enderror
                 </div>
                 <br>
 
@@ -23,6 +27,10 @@
                             class="text-red-400 text-xs">&#10033;</span></label><br>
                     <input id="trainer_code" name="trainer_code" type="text" class="rounded"><br>
                 </div>
+                @error('trainer_code')
+                    <small class="text-red-400">*{{ $message }}</small>
+                    <br>
+                @enderror
                 <br>
                 {{-- Pokemon input field --}}
                 <div>
@@ -30,6 +38,10 @@
                             class="text-red-400 text-xs">&#10033;</span></label><br>
                     <input id="pokemon_name" name="pokemon_name" type="text" class="rounded"><br>
                 </div>
+                @error('pokemon_name')
+                    <small class="text-red-400">*{{ $message }}</small>
+                    <br>
+                @enderror
                 <br>
 
                 <div>
@@ -38,17 +50,27 @@
                     <input id="pokemon_level" name="pokemon_level" type="number" class="rounded" min="1"
                         max="100"><br>
                 </div>
+                @error('pokemon_level')
+                    <small class="text-red-400">*{{ $message }}</small>
+                    <br>
+                @enderror
                 <br>
                 {{-- PokemonType input field --}}
                 <div>
                     <label for="pokemon_type" class="text-white font-bold">POKÉMON TYPE <span
                             class="text-red-400 text-xs">&#10033; Select
                             One</span></label><br>
-                    <select name="pokemon_type" id="pokemon_type" class="rounded"><br>
+                    <select name="type_id" id="pokemon_type" class="rounded"><br>
+                        <option value="">Select type</option>
                         @foreach ($types as $type)
-                            <option value="{{ $type->id }}">{{ $type->name }}</option>
+                            <option value="{{ $type->id }}">
+                                {{ $type->type_name }}</option>
                         @endforeach
                     </select>
+                    @error('pokemon_type')
+                        <small class="text-red-400">*{{ $message }}</small>
+                        <br>
+                    @enderror
                 </div>
                 <br>
                 <div class="flex justify-evenly">
