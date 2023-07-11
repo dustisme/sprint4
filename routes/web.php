@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TrainerFormController;
+use App\Http\Controllers\BattleFormController;
+use App\Http\Controllers\HomepageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,20 +16,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', HomepageController::class);
+
+Route::controller(TrainerFormController::class)->group(function() {
+    Route::get('/trainers', 'index');
+    Route::get('/new-trainer', 'create');
+    Route::post('/trainer', 'store');
+    Route::get('/trainer-info/{id}', 'show');
+    Route::get('/edit-info/{id}', 'edit');
+    Route::patch('/trainer/{id}', 'update');
+    Route::delete('/trainers/{id}', 'destroy');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::controller(BattleFormController::class)->group(function () {
+    Route::get('/battle-results', 'index');
+    Route::get('/new-battle', 'create');
+    Route::post('/battle', 'store');
+    Route::get('/battle-info/{id}', 'show');
 });
 
-require __DIR__.'/auth.php';
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 
+// require __DIR__.'/auth.php';
