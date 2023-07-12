@@ -24,7 +24,7 @@ Route::controller(TrainerFormController::class)->group(function() {
     Route::post('/trainer', 'store');
     Route::get('/trainer-info/{id}', 'show');
     Route::get('/edit-info/{id}', 'edit');
-    Route::patch('/trainer/{id}', 'update');
+    Route::put('/trainer/{id}', 'update');
     Route::delete('/trainers/{id}', 'destroy');
 });
 
